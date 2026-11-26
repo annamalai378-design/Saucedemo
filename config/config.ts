@@ -27,12 +27,29 @@ if (
 }
 
 const environmentValues = dotenvResult.parsed ?? {};
+const ciDefaults =
+  process.env.CI === 'true' && testEnvironment === 'qa'
+    ? {
+        baseUrl: 'https://www.saucedemo.com',
+        username: 'standard_user',
+        password: 'secret_sauce',
+      }
+    : undefined;
 const BASE_URL =
-  process.env.APP_BASE_URL ?? environmentValues.BASE_URL ?? process.env.BASE_URL;
+  process.env.APP_BASE_URL ||
+  environmentValues.BASE_URL ||
+  ciDefaults?.baseUrl ||
+  process.env.BASE_URL;
 const USERNAME =
-  process.env.APP_USERNAME ?? environmentValues.USERNAME ?? process.env.USERNAME;
+  process.env.APP_USERNAME ||
+  environmentValues.USERNAME ||
+  ciDefaults?.username ||
+  process.env.USERNAME;
 const PASSWORD =
-  process.env.APP_PASSWORD ?? environmentValues.PASSWORD ?? process.env.PASSWORD;
+  process.env.APP_PASSWORD ||
+  environmentValues.PASSWORD ||
+  ciDefaults?.password ||
+  process.env.PASSWORD;
 if (!BASE_URL || !USERNAME || !PASSWORD) {
   throw new Error(
     `BASE_URL, USERNAME, and PASSWORD must be set in "${environmentFile}" or provided as environment variables.`,
