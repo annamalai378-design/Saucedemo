@@ -75,6 +75,10 @@ included files are configured for the SauceDemo test account.
 For another environment, update those local files and do not commit real
 credentials.
 
+GitHub Actions uses the public SauceDemo test account by default. To run the
+workflows against another QA target, set the `BASE_URL`, `USERNAME`, and
+`PASSWORD` secrets in the `qa` GitHub environment; configured secrets override
+the defaults.
 Optional browser settings are `BROWSER` (`chromium`, `firefox`, or `webkit`),
 `HEADLESS` (`true` or `false`), and `TIMEOUT_MS` (positive number of
 milliseconds). For example:
