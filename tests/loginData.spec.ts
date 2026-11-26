@@ -11,5 +11,6 @@ test(`Login with ${user.username}`, async ({ page }) => {
     await loginPage.navigateToLoginPage();
     await loginPage.enterUsername(user.username);
     await loginPage.enterPassword(user.password);
+    
 })
 };
