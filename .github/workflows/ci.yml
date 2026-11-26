@@ -16,9 +16,9 @@ jobs:
 
     env:
       TEST_ENV: qa
-      APP_BASE_URL: ${{ secrets.BASE_URL }}
-      APP_USERNAME: ${{ secrets.USERNAME }}
-      APP_PASSWORD: ${{ secrets.PASSWORD }}
+      APP_BASE_URL: ${{ secrets.BASE_URL || 'https://www.saucedemo.com' }}
+      APP_USERNAME: ${{ secrets.USERNAME || 'standard_user' }}
+      APP_PASSWORD: ${{ secrets.PASSWORD || 'secret_sauce' }}
       CI: true
 
     steps:
